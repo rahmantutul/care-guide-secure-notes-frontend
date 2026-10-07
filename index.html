@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Secure Notes</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Secure note-taking platform</p>
+        <h1>Secure Notes</h1>
+      </div>
+      <div id="sessionPanel" class="session-panel">
+        <span id="currentUser" class="user-pill">Not logged in</span>
+        <button id="logoutButton" class="button button-ghost" type="button">Logout</button>
+      </div>
+    </header>
+
+    <main class="shell">
+      <section id="authView" class="panel auth-panel auth-screen">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Access</p>
+            <h2 id="authTitle">Login</h2>
+          </div>
+          <p id="authSubtitle">Sign in to manage your secure notes.</p>
+        </div>
+
+        <div class="auth-grid">
+          <form id="loginForm" class="form-card">
+            <h3>Login</h3>
+            <label>
+              Email
+              <input name="email" type="email" placeholder="admin@example.com" required />
+            </label>
+            <label>
+              Password
+              <input name="password" type="password" placeholder="password123" required />
+            </label>
+            <button class="button button-primary" type="submit">Login</button>
+            <button id="showRegisterButton" class="button button-ghost" type="button">Create New Account</button>
+          </form>
+
+          <form id="registerForm" class="form-card hidden">
+            <h3>Register</h3>
+            <label>
+              Name
+              <input name="name" placeholder="Your name" required />
+            </label>
+            <label>
+              Email
+              <input name="email" type="email" placeholder="you@example.com" required />
+            </label>
+            <label>
+              Password
+              <input name="password" type="password" placeholder="Minimum 6 characters" required />
+            </label>
+            <label>
+              Interests
+              <input name="interests" placeholder="security, reading, chess" />
+            </label>
+            <button class="button button-secondary" type="submit">Create Account</button>
+            <button id="showLoginButton" class="button button-ghost" type="button">Back To Login</button>
+          </form>
+        </div>
+      </section>
+
+      <div id="appView" class="hidden">
+        <nav class="app-nav">
+          <button id="notesMenuButton" class="nav-button active" type="button">My Notes</button>
+          <button id="publicPostsMenuButton" class="nav-button" type="button">See All Public Posts</button>
+          <button id="adminMenuButton" class="nav-button" type="button">Admin</button>
+        </nav>
+
+        <section id="notesView" class="view-panel">
+          <article class="panel">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Private</p>
+                <h2>My Notes</h2>
+              </div>
+              <button id="loadNotesButton" class="button button-ghost" type="button">Refresh</button>
+            </div>
+
+            <form id="noteForm" class="stack-form">
+              <label>
+                Title
+                <input name="title" placeholder="Note title" required />
+              </label>
+              <label>
+                Body
+                <textarea name="body" placeholder="Write a private note" required></textarea>
+              </label>
+              <button class="button button-primary" type="submit">Create Note</button>
+            </form>
+
+            <div id="notesList" class="list"></div>
+          </article>
+        </section>
+
+        <section id="postsView" class="view-panel hidden">
+          <article class="panel">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Public</p>
+                <h2>All Public Posts</h2>
+              </div>
+              <button id="loadPostsButton" class="button button-ghost" type="button">Refresh</button>
+            </div>
+
+            <form id="postForm" class="stack-form">
+              <label>
+                Title
+                <input name="title" placeholder="Post title" required />
+              </label>
+              <label>
+                Body
+                <textarea name="body" placeholder="Write a public post" required></textarea>
+              </label>
+              <button class="button button-secondary" type="submit">Create Post</button>
+            </form>
+
+            <div id="postsList" class="list"></div>
+          </article>
+        </section>
+
+        <section id="adminSection" class="panel admin-panel view-panel hidden">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Admin</p>
+              <h2>Control Center</h2>
+            </div>
+            <div class="button-row">
+              <button id="loadUsersButton" class="button button-ghost" type="button">Users</button>
+              <button id="loadAllNotesButton" class="button button-ghost" type="button">All Notes</button>
+              <button id="groupInterestsButton" class="button button-ghost" type="button">Interests</button>
+            </div>
+          </div>
+          <div id="adminOutput" class="admin-output"></div>
+        </section>
+      </div>
+    </main>
+
+    <script src="/config.js"></script>
+    <script src="/app.js"></script>
+  </body>
+</html>
